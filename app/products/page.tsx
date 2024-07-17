@@ -1,18 +1,35 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import productActions from "@/features/productActions";
 import { Drink } from "@/types/product";
 import GridWrapper from "@/components/GridWrapper";
 import ProductCard from "@/components/ProductCard";
 import { useSearchParams } from "next/navigation";
 
-export default function ProductsPage() {
+const Placeholder = () => {
+  return (
+    <section className="container m-auto py-5 px-4 mb-16">
+      <div className=" flex justify-center items-center gap-4 mb-10">
+        <div className="w-full sm:w-1/2 px-4 py-2 ring-1 ring-gray-300 bg-gray-300 rounded-full" />
+      </div>
+
+      <GridWrapper
+        id="products"
+        className="w-full max-md:grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(18rem,1fr))]"
+      >
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="bg-gray-300 rounded-md w-full"></div>
+        ))}
+      </GridWrapper>
+    </section>
+  );
+};
+
+function ProductsContent() {
   const params = useSearchParams();
-
-  const { searchProducts } = productActions();
-
-  const [products, setProducts] = useState<Drink[]>([]);
   const [search, setSearch] = useState<string>(params.get("search") ?? "");
+  const { searchProducts } = productActions();
+  const [products, setProducts] = useState<Drink[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -50,5 +67,13 @@ export default function ProductsPage() {
         </GridWrapper>
       )}
     </section>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<Placeholder />}>
+      <ProductsContent />
+    </Suspense>
   );
 }
