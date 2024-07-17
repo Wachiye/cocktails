@@ -17,8 +17,8 @@ export interface Drink {
   strInstructionsDE: null | string;
   strInstructionsFR: null | string;
   strInstructionsIT: string;
-  'strInstructionsZH-HANS': null | string;
-  'strInstructionsZH-HANT': null | string;
+  "strInstructionsZH-HANS": null | string;
+  "strInstructionsZH-HANT": null | string;
   strDrinkThumb: string;
   strIngredient1: string;
   strIngredient2: string;
@@ -54,4 +54,9 @@ export interface Drink {
   strImageAttribution: null | string;
   strCreativeCommonsConfirmed: string;
   dateModified: string;
+}
+
+export interface Category {
+  imageUrl: string;
+  title: string;
 }

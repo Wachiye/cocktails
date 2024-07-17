@@ -19,13 +19,14 @@ export default function Statistics() {
       <div className="container m-auto flex flex-col justify-start md:justify-between md:flex-row gap-4 mb-10">
         <div className="w-full max-w-md px-4 md:px-6 py-5">
           <p className="text-base">
-            Bacardi Breezer, Breezer for short, is a fruit-based alcoholic drink
-            which comes in many flavours.
+            Discover a world of exquisite cocktails and mouth-watering recipes.
+            Our selection will delight your taste buds and spark your
+            creativity.
           </p>
         </div>
         <div className="relative flex-1  max-md:order-3">
           <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 -mb-10">
-            <ScrollTo text="Scroll" direction="bottom" className="mt-10" />
+            <ScrollTo href="#flavors" text="Scroll" direction="bottom" className="mt-10" />
           </div>
         </div>
         <div className="w-full grid gap-5 grid-cols-3 max-w-md">

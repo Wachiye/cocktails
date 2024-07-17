@@ -1,27 +1,29 @@
-"use client";
 import Image from "next/image";
 import GridWrapper from "./GridWrapper";
-import {  useEffect, useState } from "react";
 import productActions from "@/features/productActions";
-import { Drink } from "@/types/product";
 import ProductCard from "./ProductCard";
+import ScrollTo from "./ScrollTo";
+import { Drink } from "@/types/product";
 
-export default function Products() {
-  const { getProducts } = productActions();
+const { getProducts } = productActions();
 
-  const [products, setProducts] = useState<Drink[]>([]);
+const fetch = async (): Promise<Drink[]> => {
+  const products = await getProducts()
+    .then((data) => {
+      return data.drinks.slice(0, 6);
+    })
+    .catch((e) => {
+      return [];
+    });
 
-  useEffect(() => {
-    const fetch = async () => {
-      await getProducts().then((data) => {
-        setProducts(data.drinks);
-      });
-    };
-    fetch();
-  }, [getProducts]);
+  return products;
+};
+
+export default async function Products() {
+  const products = await fetch();
 
   return (
-    <section className="container m-auto py-5 px-4 mb-16">
+    <section id="products" className="container m-auto py-5 px-4 mb-16">
       <div className=" flex flex-col justify-start md:justify-between md:flex-row gap-4 mb-10">
         <div className="flex-1 space-x-2">
           <Image
@@ -58,6 +60,16 @@ export default function Products() {
           {products.map((item) => (
             <ProductCard key={item.idDrink} product={item} />
           ))}
+          <div className="relative w-full">
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2">
+              <ScrollTo
+                href="/products"
+                text="View all"
+                direction="right"
+                className="mt-10"
+              />
+            </div>
+          </div>
         </GridWrapper>
       )}
     </section>

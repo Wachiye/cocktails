@@ -2,27 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.stroke{
+.stroke {
   color: black;
   -webkit-text-fill-color: rgba(255, 255, 255, 0.756);
   -webkit-text-stroke: 0.375px rgba(21, 4, 4, 0.959);
   letter-spacing: 1rem;
 }
 
-.stretch {
-  -webkit-transform: scale(2, 1);
-  -moz-transform: scale(2, 1);
-  -o-transform: scale(2, 1);
-  transform: scale(2, 1);
-  overflow-x: hidden;
-}
 
 @media screen and (max-width:580px) {
-  .stretch {
-    -webkit-transform: scale(1.25, 1);
-    -moz-transform: scale(1.25, 1);
-    -o-transform: scale(1.25, 1);
-    transform: scale(1.25, 1);
-    overflow-x: hidden;
+  .stroke {
+    letter-spacing: 0.5rem;
   }
 }

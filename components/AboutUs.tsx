@@ -34,7 +34,7 @@ const descriptions = [
 ];
 export default function AboutUs() {
   return (
-    <section className="container m-auto py-5 px-4 mb-16">
+    <section id="about" className="container m-auto py-5 px-4 mb-16">
       <div className=" flex flex-col justify-start md:justify-between md:flex-row gap-4 mb-10">
         <div className=" px-4 md:px-6 py-5 md:w-1/2 space-y-5">
           <Image
