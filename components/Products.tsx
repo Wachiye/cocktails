@@ -5,10 +5,9 @@ import ProductCard from "./ProductCard";
 import ScrollTo from "./ScrollTo";
 import { Drink } from "@/types/product";
 
-const { getProducts } = productActions();
-
 const fetch = async (): Promise<Drink[]> => {
-  const products = await getProducts()
+  const products = await productActions
+    .getProducts()
     .then((data) => {
       return data.drinks.slice(0, 6);
     })

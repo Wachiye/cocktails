@@ -2,13 +2,10 @@ import Image from "next/image";
 import ScrollTo from "./ScrollTo";
 import FlavorCard from "./FlavourCard";
 import GridWrapper from "./GridWrapper";
-import Breezer from "./Breezer";
 import productActions from "@/features/productActions";
 
 export default async function Flavors() {
-  const { getCategories } = productActions();
-
-  const categories = await getCategories();
+  const categories = await productActions.getCategories();
 
   return (
     <section id="flavors" className="container m-auto py-5 px-4 mb-16">
@@ -47,12 +44,21 @@ export default async function Flavors() {
       </div>
       <GridWrapper className="w-full max-md:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] md:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]">
         {categories?.map((item) => (
-          <FlavorCard key={item.title} title={item.title} imageUrl={item.imageUrl} />
+          <FlavorCard
+            key={item.title}
+            title={item.title}
+            imageUrl={item.imageUrl}
+          />
         ))}
 
         <div className="relative w-full">
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2">
-            <ScrollTo href="/products" text="View all" direction="right" className="mt-10" />
+            <ScrollTo
+              href="/products"
+              text="View all"
+              direction="right"
+              className="mt-10"
+            />
           </div>
         </div>
       </GridWrapper>

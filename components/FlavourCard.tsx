@@ -4,7 +4,15 @@ import Link from "next/link";
 
 export default function FlavorCard({ imageUrl, title }: Category) {
   return (
-    <Link href={`/products?search=${title}`} className="w-full flex items-center justify-center bg-gray-100 rounded-lg">
+    <Link
+      href={{
+        pathname: `/products`,
+        query: {
+          search: title,
+        },
+      }}
+      className="w-full flex items-center justify-center bg-gray-100 rounded-lg"
+    >
       <div className="w-full overflow-hidden rounded-lg hover:shadow-sm">
         <Image
           className="w-full"
