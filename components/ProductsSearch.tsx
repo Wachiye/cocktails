@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import GridWrapper from "./GridWrapper";
 import ProductCard from "./ProductCard";
 import productActions from "@/features/productActions";
-import { useSearchParams } from "next/navigation";
 
 export default function ProductsSearch({
   initialSearch = "",
